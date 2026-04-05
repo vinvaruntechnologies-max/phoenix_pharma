@@ -1,0 +1,595 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2024-12-16 17:40:43.478303",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "costing_details_tab",
+  "section_break_full",
+  "naming_series",
+  "company_name",
+  "cost_sheet_name",
+  "cost_sheet_date",
+  "column_break_cvrg",
+  "customer_name",
+  "customer_location",
+  "item",
+  "type_of_formulation",
+  "item_and_bom_details_section",
+  "column_break_pzsy",
+  "retrieve_bom_for",
+  "select_raw_material_bom",
+  "select_packing_bom",
+  "costing_with_custom_batch_size",
+  "costing_batch_size",
+  "costing_alternate_batch_size",
+  "column_break_nvdw",
+  "batch_size",
+  "uom",
+  "alternate_batch_size",
+  "alternate_batch_size_uom",
+  "section_break_dbgw",
+  "retrieve_bom",
+  "raw_materials",
+  "packing_materials",
+  "label_claim_section",
+  "label_claim_type",
+  "label_claim",
+  "product_details_section",
+  "average_weight",
+  "average_weight_uom",
+  "column_break_xgvl",
+  "type_of_pack",
+  "unit",
+  "pack_style",
+  "cost_details_section",
+  "process_loss_rm_",
+  "process_loss_pm_",
+  "process_loss_cost",
+  "total_cost_after_process_loss",
+  "testing_charges_rm",
+  "testing_charges_pm",
+  "testing_charges_finished_goods",
+  "column_break_rwyf",
+  "rubber_stereos",
+  "foil_printing_artwork_block_and_film_making",
+  "development_charges",
+  "dpco_conversion_cost",
+  "dpco_formula",
+  "freight",
+  "total_before_profit_margin",
+  "column_break_wynb",
+  "apply_profit_margin",
+  "profit_margin_",
+  "profit_margin_rs",
+  "net_total",
+  "cost_per_unit",
+  "cost_per",
+  "pack_description",
+  "calculate_cost",
+  "cash_inflow",
+  "clear",
+  "materials_summary_tab",
+  "section_break_gnfa",
+  "column_break_dkvg",
+  "raw_material_cost",
+  "packing_material_cost",
+  "total_material_cost",
+  "column_break_idzu",
+  "raw_material_qty",
+  "packing_material_qty",
+  "total_material_qty"
+ ],
+ "fields": [
+  {
+   "fieldname": "cost_sheet_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Cost Sheet Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "cost_sheet_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Cost Sheet Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "item",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Item",
+   "link_filters": "[[\"Item\",\"item_group\",\"=\",\"Finished Product\"]]",
+   "options": "Item",
+   "reqd": 1
+  },
+  {
+   "fieldname": "customer_name",
+   "fieldtype": "Link",
+   "label": "Customer Name",
+   "options": "Customer"
+  },
+  {
+   "fetch_from": "customer_name.customer_primary_address",
+   "fieldname": "customer_location",
+   "fieldtype": "Data",
+   "label": "Customer Location",
+   "read_only": 1
+  },
+  {
+   "description": "Value Fetched From RM BOM",
+   "fetch_from": "select_raw_material_bom.quantity",
+   "fieldname": "batch_size",
+   "fieldtype": "Float",
+   "label": "Batch Size",
+   "reqd": 1
+  },
+  {
+   "description": "Value Fetched From Packing BOM",
+   "fetch_from": "select_packing_bom.quantity",
+   "fieldname": "alternate_batch_size",
+   "fieldtype": "Float",
+   "label": "Alternate Batch Size",
+   "reqd": 1
+  },
+  {
+   "fieldname": "type_of_formulation",
+   "fieldtype": "Link",
+   "label": "Type Of Formulation",
+   "options": "Type Of Formulation",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_dbgw",
+   "fieldtype": "Section Break",
+   "label": "Materials"
+  },
+  {
+   "fieldname": "raw_materials",
+   "fieldtype": "Table",
+   "label": "Raw Materials",
+   "options": "BOM Item",
+   "read_only": 1
+  },
+  {
+   "fieldname": "packing_materials",
+   "fieldtype": "Table",
+   "label": "Packing Materials",
+   "options": "BOM Item",
+   "read_only": 1
+  },
+  {
+   "description": "Value Fetched From RM BOM",
+   "fetch_from": "select_raw_material_bom.custom_unit",
+   "fieldname": "uom",
+   "fieldtype": "Data",
+   "label": "Batch Size UOM",
+   "reqd": 1
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "product_details_section",
+   "fieldtype": "Section Break",
+   "label": "Product Details"
+  },
+  {
+   "fieldname": "cost_details_section",
+   "fieldtype": "Section Break",
+   "label": "Cost Details"
+  },
+  {
+   "default": "0",
+   "fieldname": "raw_material_cost",
+   "fieldtype": "Float",
+   "label": "Raw Material Cost",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "packing_material_cost",
+   "fieldtype": "Float",
+   "label": "Packing Material Cost",
+   "read_only": 1
+  },
+  {
+   "bold": 1,
+   "default": "0",
+   "fieldname": "total_material_cost",
+   "fieldtype": "Float",
+   "label": "Total Material Cost",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "testing_charges_rm",
+   "fieldtype": "Float",
+   "label": "Testing Charges RM"
+  },
+  {
+   "default": "0",
+   "fieldname": "testing_charges_pm",
+   "fieldtype": "Float",
+   "label": "Testing Charges PM"
+  },
+  {
+   "default": "0",
+   "fieldname": "testing_charges_finished_goods",
+   "fieldtype": "Float",
+   "label": "Testing Charges Finished Goods"
+  },
+  {
+   "default": "0",
+   "fieldname": "rubber_stereos",
+   "fieldtype": "Float",
+   "label": "Rubber Stereos"
+  },
+  {
+   "default": "0",
+   "fieldname": "foil_printing_artwork_block_and_film_making",
+   "fieldtype": "Float",
+   "label": "Foil Printing, Artwork, Block And Film Making"
+  },
+  {
+   "fieldname": "column_break_wynb",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "development_charges",
+   "fieldtype": "Float",
+   "label": "Development Charges"
+  },
+  {
+   "default": "0",
+   "fieldname": "dpco_conversion_cost",
+   "fieldtype": "Float",
+   "label": "DPCO Conversion Cost"
+  },
+  {
+   "default": "0",
+   "fieldname": "freight",
+   "fieldtype": "Float",
+   "hidden": 1,
+   "label": "Total Freight Cost",
+   "read_only": 1
+  },
+  {
+   "fieldname": "label_claim",
+   "fieldtype": "Table",
+   "label": "Label Claim",
+   "options": "Label Claim",
+   "read_only": 1
+  },
+  {
+   "bold": 1,
+   "default": "0",
+   "fieldname": "total_before_profit_margin",
+   "fieldtype": "Float",
+   "label": "Total Before Profit Margin",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "apply_profit_margin",
+   "fieldtype": "Check",
+   "label": "Apply Profit Margin Only For RM And PM",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_full",
+   "fieldtype": "Section Break",
+   "label": "Primary Details"
+  },
+  {
+   "fieldname": "column_break_pzsy",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "unit",
+   "fieldtype": "Data",
+   "label": "Unit Per Pack",
+   "reqd": 1
+  },
+  {
+   "bold": 1,
+   "default": "0",
+   "fieldname": "net_total",
+   "fieldtype": "Float",
+   "label": "Net Total",
+   "read_only": 1
+  },
+  {
+   "bold": 1,
+   "default": "0",
+   "fieldname": "cost_per_unit",
+   "fieldtype": "Float",
+   "label": "Cost Per Unit",
+   "read_only": 1
+  },
+  {
+   "fieldname": "company_name",
+   "fieldtype": "Link",
+   "label": "Company Name",
+   "options": "Company",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_rwyf",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "process_loss_rm_",
+   "fieldtype": "Float",
+   "label": "Process Loss RM (%)"
+  },
+  {
+   "default": "0",
+   "fieldname": "process_loss_pm_",
+   "fieldtype": "Float",
+   "label": "Process Loss PM (%)"
+  },
+  {
+   "bold": 1,
+   "default": "0",
+   "fieldname": "profit_margin_",
+   "fieldtype": "Float",
+   "label": "Profit Margin (%)"
+  },
+  {
+   "default": "0",
+   "fieldname": "profit_margin_rs",
+   "fieldtype": "Float",
+   "label": "Profit Margin (Rs)",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_gnfa",
+   "fieldtype": "Section Break",
+   "label": "Materials Summary & Cost"
+  },
+  {
+   "default": "0",
+   "fieldname": "raw_material_qty",
+   "fieldtype": "Float",
+   "hidden": 1,
+   "label": "Raw Material Qty",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "packing_material_qty",
+   "fieldtype": "Float",
+   "hidden": 1,
+   "label": "Packing Material Qty",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "total_material_qty",
+   "fieldtype": "Float",
+   "hidden": 1,
+   "label": "Total Material Qty",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_dkvg",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "calculate_cost",
+   "fieldtype": "Button",
+   "label": "Calculate Cost"
+  },
+  {
+   "bold": 1,
+   "default": "0",
+   "fieldname": "total_cost_after_process_loss",
+   "fieldtype": "Float",
+   "label": "Total Cost After Process Loss",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "process_loss_cost",
+   "fieldtype": "Float",
+   "label": "Process Loss Cost",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "average_weight",
+   "fieldtype": "Float",
+   "label": "Average Weight",
+   "read_only": 1
+  },
+  {
+   "fieldname": "cost_per",
+   "fieldtype": "Float",
+   "label": "Cost Per Pack",
+   "read_only": 1
+  },
+  {
+   "description": "Value Fetched From Packing BOM",
+   "fetch_from": "select_packing_bom.custom_unit",
+   "fieldname": "alternate_batch_size_uom",
+   "fieldtype": "Link",
+   "label": "Alternate Batch Size UOM",
+   "options": "UOM",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_xgvl",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "costing_details_tab",
+   "fieldtype": "Tab Break",
+   "label": "Costing"
+  },
+  {
+   "fieldname": "materials_summary_tab",
+   "fieldtype": "Tab Break",
+   "label": "Materials Summary"
+  },
+  {
+   "fieldname": "label_claim_type",
+   "fieldtype": "Link",
+   "label": "Label Claim Type",
+   "options": "Label Contains",
+   "read_only": 1
+  },
+  {
+   "default": "mg",
+   "fieldname": "average_weight_uom",
+   "fieldtype": "Data",
+   "label": "Average Weight UOM",
+   "read_only": 1
+  },
+  {
+   "fieldname": "cash_inflow",
+   "fieldtype": "Button",
+   "label": "Cash Inflow"
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "in_list_view": 1,
+   "label": "Naming Series"
+  },
+  {
+   "fieldname": "clear",
+   "fieldtype": "Button",
+   "label": "Clear"
+  },
+  {
+   "fieldname": "type_of_pack",
+   "fieldtype": "Link",
+   "label": "Type Of Pack",
+   "options": "Type Of Pack",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "select_packing_bom.custom_pack_style",
+   "fetch_if_empty": 1,
+   "fieldname": "pack_style",
+   "fieldtype": "Link",
+   "label": "Pack Style",
+   "options": "Pack Style",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "select_packing_bom",
+   "fieldtype": "Link",
+   "label": "Select Packing BOM",
+   "options": "BOM",
+   "reqd": 1
+  },
+  {
+   "fieldname": "select_raw_material_bom",
+   "fieldtype": "Link",
+   "label": "Select Raw Material BOM",
+   "options": "BOM",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_cvrg",
+   "fieldtype": "Column Break"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "item_and_bom_details_section",
+   "fieldtype": "Section Break",
+   "label": "BOM Details"
+  },
+  {
+   "fieldname": "column_break_nvdw",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "retrieve_bom_for",
+   "fieldtype": "Select",
+   "label": "Retrieve BOM For",
+   "options": "\nCosting BOM\nRegular Production BOM",
+   "reqd": 1
+  },
+  {
+   "default": "0",
+   "depends_on": "eval:doc.costing_with_custom_batch_size == 1",
+   "fieldname": "costing_batch_size",
+   "fieldtype": "Float",
+   "label": "Costing Batch Size"
+  },
+  {
+   "default": "0",
+   "depends_on": "eval:doc.costing_with_custom_batch_size == 1",
+   "fieldname": "costing_alternate_batch_size",
+   "fieldtype": "Float",
+   "label": "Costing Alternate Batch Size"
+  },
+  {
+   "default": "0",
+   "depends_on": "eval:doc.batch_size > 0 && doc.alternate_batch_size > 0",
+   "fieldname": "costing_with_custom_batch_size",
+   "fieldtype": "Check",
+   "label": "Costing With Custom Batch Size Needed?"
+  },
+  {
+   "fieldname": "retrieve_bom",
+   "fieldtype": "Button",
+   "label": "Retrieve BOM"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "label_claim_section",
+   "fieldtype": "Section Break",
+   "label": "Label Claim"
+  },
+  {
+   "fieldname": "dpco_formula",
+   "fieldtype": "Data",
+   "label": "DPCO Formula"
+  },
+  {
+   "description": "Eg: 10 Tablets Per Blister",
+   "fieldname": "pack_description",
+   "fieldtype": "Data",
+   "label": "Pack Description"
+  },
+  {
+   "fieldname": "column_break_idzu",
+   "fieldtype": "Column Break"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-12-24 22:08:08.504408",
+ "modified_by": "Administrator",
+ "module": "Phoenix Pharma",
+ "name": "Cost Sheet",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

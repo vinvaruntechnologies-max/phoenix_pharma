@@ -1,0 +1,17 @@
+[build-system]
+requires = ["flit_core >=3.4,<4"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name = "phoenix_pharma"
+authors = [
+    { name = "Navin R C", email = "navinrc98@gmail.com" }
+]
+description = "Phoenix Pharma - ERPNext customizations for pharmaceutical manufacturing"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+version = "0.1.0"
+
+[project.urls]
+Homepage = "https://github.com/your-org/phoenix_pharma"

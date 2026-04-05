@@ -1,0 +1,97 @@
+<style>
+    .print-format {
+        width: 100%;
+        font-family: Arial, sans-serif;
+        font-size: 8px;
+        border: 1px solid black;
+        box-sizing: border-box;
+        /* padding: 0mm; */
+        /* No padding */
+        margin-top: 2mm;
+        /* No margin */
+        page-break-after: always;
+    }
+
+    .label-table {
+        width: 100%;
+        border-collapse: collapse;
+        table-layout: fixed;
+        margin: 0;
+        padding: 0;
+    }
+
+    .label-table td {
+        border: 1px solid black;
+        font-size: 8px;
+        vertical-align: top;
+        word-break: break-word;
+        /* word-wrap: break-word; */
+    }
+</style>
+
+{% for i in range(no_of_containers) %}
+<div class="print-format">
+    <table class="label-table">
+        <!-- add company logo -->
+        <tr>
+            <td colspan="2" style="padding: 0; border: none;">
+                <table style="width: 100%; border-collapse: collapse;">
+                    <tr>
+                        <!-- Logo Left -->
+                        <td style="width: 30px; padding-left: 2px; border: none;">
+                            {% if logo_url %}
+                            <img src="{{ logo_url }}" alt="Logo"
+                                style="height: 30px; width: 30px; object-fit: contain;" />
+                            {% endif %}
+                        </td>
+
+                        <!-- Company Name Centered -->
+                        <td style="text-align: center; border: none; vertical-align: middle;">
+                            <span style="font-size: 12px; font-weight: bold; white-space: nowrap; ">
+                                {{ company or "" }}
+                            </span>
+                        </td>
+
+                        <!-- Right Spacer -->
+                        <td style="width: 30px; border: none;"></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td><span>ARN:</span> {{ arn_no }}</td>
+            <td><span>Container:</span> {{ i + 1 }} of {{ no_of_containers or "" }}</td>
+        </tr>
+        <tr>
+            <td colspan="2"><span>Material Name:</span> {{ item_name or "" }}</td>
+        </tr>
+        <tr>
+            <td colspan="2"><span>Manufacturer: {{ manufacturer or "" }}</span></td>
+        </tr>
+        <tr>
+            <td colspan="2"><span>Supplier: {{ supplier or "" }}</span></td>
+        </tr>
+        <tr>
+            <td><span>Batch No:</span> {{ batch or "" }}</td>
+            <td><span>Control No.:</span> {{ control_number or "" }}</td>
+        </tr>
+        <tr>
+            <td><span>Mfg. Date:</span> {{ mfg_date or "" }}</td>
+            <td><span>Exp. Date:</span> {{ expiry_date or "" }}</td>
+        </tr>
+        <tr>
+            <td><span>Qty. Received:</span> {{ quantity or "" }} {{ uom or "" }}</td>
+            <td><span>Qty. Sampled:</span> {{ sample_size or "" }} {{ uom or "" }}</td>
+        </tr>
+        <tr>
+            <td><span>Sampled By:</span> {{ analysed_by or "" }}</td>
+            <td><span>Date:</span></td>
+        </tr>
+        <tr>
+            <td colspan="2" style="font-size: 12px; font-weight: bold; text-align: center;">
+                UNDER TEST
+            </td>
+        </tr>
+    </table>
+</div>
+{% endfor %}

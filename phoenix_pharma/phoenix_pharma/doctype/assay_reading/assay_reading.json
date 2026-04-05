@@ -1,0 +1,92 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-05-22 10:50:51.893351",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "contains",
+  "label_claim",
+  "label_claim_uom",
+  "limit",
+  "claim_obtained",
+  "claim_obtained_uom",
+  "result__in__"
+ ],
+ "fields": [
+  {
+   "columns": 3,
+   "fieldname": "contains",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Contains Heading",
+   "read_only": 1
+  },
+  {
+   "columns": 1,
+   "fieldname": "label_claim",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Label Claim",
+   "read_only": 1
+  },
+  {
+   "columns": 1,
+   "fieldname": "label_claim_uom",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Claim UOM",
+   "options": "UOM",
+   "read_only": 1
+  },
+  {
+   "columns": 1,
+   "fieldname": "limit",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Limit",
+   "reqd": 1
+  },
+  {
+   "columns": 1,
+   "fieldname": "claim_obtained",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Claim Obtained",
+   "reqd": 1
+  },
+  {
+   "columns": 1,
+   "fieldname": "claim_obtained_uom",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Obtained UOM",
+   "options": "UOM",
+   "read_only": 1
+  },
+  {
+   "columns": 1,
+   "fieldname": "result__in__",
+   "fieldtype": "Percent",
+   "in_list_view": 1,
+   "label": "Result ( in % )",
+   "precision": "2",
+   "read_only": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2025-05-22 15:42:33.920120",
+ "modified_by": "Administrator",
+ "module": "Phoenix Pharma",
+ "name": "Assay Reading",
+ "owner": "Administrator",
+ "permissions": [],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

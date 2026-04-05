@@ -1,0 +1,350 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "autoname": "naming_series:",
+ "creation": "2025-04-04 07:10:00.867100",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "company",
+  "abbr",
+  "reference_doctype",
+  "reference_name",
+  "reference_document_status",
+  "reference_document_date",
+  "reference_document_time",
+  "child_row_reference_doctype",
+  "child_row_name",
+  "column_break_vmpc",
+  "item_code",
+  "item_name",
+  "item_quantity",
+  "rejected_quantity",
+  "returned_quantity",
+  "item_uom",
+  "supplier",
+  "manufacturer",
+  "no_of_containers",
+  "section_break_qqid",
+  "column_break_ebyy",
+  "arn_number",
+  "arn_date",
+  "arn_status",
+  "assay",
+  "lod",
+  "column_break_pnms",
+  "batch",
+  "mfg_date",
+  "expiry_date",
+  "retest_date",
+  "sample_quantity",
+  "section_break_pmki",
+  "control_number_activity"
+ ],
+ "fields": [
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "Company",
+   "options": "Company",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "company.abbr",
+   "fieldname": "abbr",
+   "fieldtype": "Data",
+   "label": "abbr",
+   "read_only": 1
+  },
+  {
+   "bold": 1,
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Series",
+   "no_copy": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "item_code",
+   "fieldtype": "Link",
+   "label": "Item Code",
+   "options": "Item",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "item_code.item_name",
+   "fieldname": "item_name",
+   "fieldtype": "Data",
+   "label": "Item Name",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "description": "Balance Available Accepted Qty",
+   "fieldname": "item_quantity",
+   "fieldtype": "Float",
+   "label": "Item Quantity",
+   "non_negative": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_ebyy",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "batch",
+   "fieldtype": "Link",
+   "label": "Batch",
+   "options": "Batch",
+   "read_only": 1
+  },
+  {
+   "fieldname": "mfg_date",
+   "fieldtype": "Date",
+   "label": "Mfg. Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "expiry_date",
+   "fieldtype": "Date",
+   "label": "Expiry Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "arn_number",
+   "fieldtype": "Data",
+   "label": "ARN Number",
+   "read_only": 1
+  },
+  {
+   "fieldname": "arn_status",
+   "fieldtype": "Data",
+   "label": "ARN Status",
+   "read_only": 1
+  },
+  {
+   "fieldname": "reference_doctype",
+   "fieldtype": "Data",
+   "label": "Reference Doctype",
+   "read_only": 1
+  },
+  {
+   "fieldname": "reference_name",
+   "fieldtype": "Data",
+   "label": "Reference Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_vmpc",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "item_uom",
+   "fieldtype": "Data",
+   "label": "Item UOM",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_qqid",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "arn_date",
+   "fieldtype": "Date",
+   "label": "ARN Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_pnms",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "supplier",
+   "fieldtype": "Link",
+   "label": "Supplier",
+   "options": "Supplier",
+   "read_only": 1
+  },
+  {
+   "fieldname": "manufacturer",
+   "fieldtype": "Link",
+   "label": "Manufacturer",
+   "options": "Manufacturer",
+   "read_only": 1
+  },
+  {
+   "fieldname": "reference_document_status",
+   "fieldtype": "Data",
+   "label": "Reference Document Status",
+   "read_only": 1
+  },
+  {
+   "fieldname": "reference_document_date",
+   "fieldtype": "Date",
+   "label": "Reference Document Date",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "returned_quantity",
+   "fieldtype": "Float",
+   "label": "Returned Quantity",
+   "read_only": 1
+  },
+  {
+   "description": "Initial Receipt Container Count",
+   "fieldname": "no_of_containers",
+   "fieldtype": "Int",
+   "label": " No Of Containers",
+   "non_negative": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "assay",
+   "fieldtype": "Data",
+   "label": "Assay",
+   "read_only": 1
+  },
+  {
+   "fieldname": "lod",
+   "fieldtype": "Data",
+   "label": "LOD",
+   "read_only": 1
+  },
+  {
+   "fieldname": "retest_date",
+   "fieldtype": "Date",
+   "label": "Retest Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "sample_quantity",
+   "fieldtype": "Float",
+   "label": "Sample Quantity",
+   "read_only": 1
+  },
+  {
+   "fieldname": "child_row_reference_doctype",
+   "fieldtype": "Data",
+   "label": "Child Row Reference Doctype",
+   "read_only": 1
+  },
+  {
+   "fieldname": "child_row_name",
+   "fieldtype": "Data",
+   "label": "Child Row Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "reference_document_time",
+   "fieldtype": "Time",
+   "label": "Reference Document Time",
+   "read_only": 1
+  },
+  {
+   "fieldname": "control_number_activity",
+   "fieldtype": "Table",
+   "label": "Control Number Activity",
+   "options": "Control Number Activity",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_pmki",
+   "fieldtype": "Section Break"
+  },
+  {
+   "default": "0",
+   "description": "Rejected Qty",
+   "fieldname": "rejected_quantity",
+   "fieldtype": "Float",
+   "label": "Rejected Quantity",
+   "read_only": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-07-05 21:35:32.299830",
+ "modified_by": "Administrator",
+ "module": "Phoenix Pharma",
+ "name": "Control Number",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Stock User",
+   "share": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Stock Manager",
+   "share": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Quality Manager",
+   "share": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Manufacturing User",
+   "share": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Manufacturing Manager",
+   "share": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "import": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Administrator",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "search_fields": "arn_number,batch,item_quantity",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

@@ -1,0 +1,135 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-06-15 11:34:08.261888",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "item_code",
+  "item_name",
+  "batch",
+  "control_number",
+  "arn",
+  "available_qty",
+  "issued_qty",
+  "uom",
+  "total_required_qty",
+  "column_break_xwxm",
+  "assay",
+  "lod",
+  "retest_date"
+ ],
+ "fields": [
+  {
+   "columns": 3,
+   "fieldname": "item_code",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Item",
+   "options": "Item",
+   "read_only": 1
+  },
+  {
+   "fieldname": "item_name",
+   "fieldtype": "Data",
+   "label": "Item Name",
+   "read_only": 1
+  },
+  {
+   "columns": 1,
+   "fetch_from": "control_number.item_uom",
+   "fieldname": "uom",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "UOM",
+   "options": "UOM",
+   "read_only": 1
+  },
+  {
+   "columns": 1,
+   "fieldname": "batch",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Batch",
+   "options": "Batch",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "control_number.assay",
+   "fieldname": "assay",
+   "fieldtype": "Data",
+   "label": "Assay",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "control_number.lod",
+   "fieldname": "lod",
+   "fieldtype": "Data",
+   "label": "LOD",
+   "read_only": 1
+  },
+  {
+   "columns": 2,
+   "fetch_from": "control_number.arn_number",
+   "fieldname": "arn",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "ARN",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "control_number.retest_date",
+   "fieldname": "retest_date",
+   "fieldtype": "Date",
+   "label": "Retest Date",
+   "read_only": 1
+  },
+  {
+   "columns": 2,
+   "fieldname": "control_number",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Control Number",
+   "options": "Control Number"
+  },
+  {
+   "fetch_from": "control_number.item_quantity",
+   "fieldname": "available_qty",
+   "fieldtype": "Float",
+   "label": "ARN Avl. Qty",
+   "read_only": 1
+  },
+  {
+   "columns": 1,
+   "fieldname": "issued_qty",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Issued Qty"
+  },
+  {
+   "fieldname": "column_break_xwxm",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "total_required_qty",
+   "fieldtype": "Float",
+   "label": "Total Required Qty",
+   "read_only": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2025-06-22 13:48:12.151275",
+ "modified_by": "Administrator",
+ "module": "Phoenix Pharma",
+ "name": "Exploded Stock Entry Items",
+ "owner": "Administrator",
+ "permissions": [],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

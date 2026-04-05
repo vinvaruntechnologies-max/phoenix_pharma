@@ -1,0 +1,265 @@
+{
+ "actions": [],
+ "autoname": "hash",
+ "creation": "2025-05-16 11:36:52.694678",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "references_section",
+  "packing_slip_reference",
+  "section_break_qxrh",
+  "item_code",
+  "qty",
+  "dn_item",
+  "column_break_zkhy",
+  "item_name",
+  "stock_uom",
+  "batch",
+  "section_break_szyu",
+  "from_package_no",
+  "to_package_no",
+  "pack_nos_range",
+  "no_of_qty_per_package",
+  "net_weight",
+  "gross_weight",
+  "length",
+  "width",
+  "height",
+  "column_break_uomg",
+  "no_of_unit_per_package",
+  "noupp_uom",
+  "pack_style",
+  "noqpp_uom",
+  "net_weight_uom",
+  "gross_weight_uom",
+  "length_uom",
+  "width_uom",
+  "height_uom"
+ ],
+ "fields": [
+  {
+   "columns": 3,
+   "fieldname": "item_code",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Item Code",
+   "options": "Item",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "item_code.item_name",
+   "fieldname": "item_name",
+   "fieldtype": "Data",
+   "label": "Item Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_zkhy",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "packing_slip_reference",
+   "fieldtype": "Link",
+   "label": "Packing Slip Reference",
+   "options": "Packing Slip",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_qxrh",
+   "fieldtype": "Section Break",
+   "label": "Item Details"
+  },
+  {
+   "fieldname": "section_break_szyu",
+   "fieldtype": "Section Break",
+   "label": "Package Details"
+  },
+  {
+   "columns": 1,
+   "fieldname": "no_of_unit_per_package",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "No of Unit Per Package",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_uomg",
+   "fieldtype": "Column Break"
+  },
+  {
+   "columns": 1,
+   "fieldname": "no_of_qty_per_package",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "No of Qty Per Package",
+   "read_only": 1
+  },
+  {
+   "fieldname": "noupp_uom",
+   "fieldtype": "Link",
+   "label": "NOUPP UOM",
+   "options": "UOM",
+   "read_only": 1
+  },
+  {
+   "fieldname": "noqpp_uom",
+   "fieldtype": "Link",
+   "label": "NOQPP UOM",
+   "options": "UOM",
+   "read_only": 1
+  },
+  {
+   "columns": 1,
+   "fieldname": "net_weight",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Net Weight",
+   "read_only": 1
+  },
+  {
+   "columns": 1,
+   "fieldname": "gross_weight",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Gross Weight",
+   "read_only": 1
+  },
+  {
+   "fieldname": "net_weight_uom",
+   "fieldtype": "Link",
+   "label": "Net Weight UOM",
+   "options": "UOM",
+   "read_only": 1
+  },
+  {
+   "fieldname": "gross_weight_uom",
+   "fieldtype": "Link",
+   "label": "Gross Weight UOM",
+   "options": "UOM",
+   "read_only": 1
+  },
+  {
+   "fieldname": "references_section",
+   "fieldtype": "Section Break",
+   "label": "References"
+  },
+  {
+   "fieldname": "from_package_no",
+   "fieldtype": "Int",
+   "label": "From Package No.",
+   "read_only": 1
+  },
+  {
+   "columns": 1,
+   "fieldname": "pack_nos_range",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Pack Nos.",
+   "read_only": 1
+  },
+  {
+   "fieldname": "to_package_no",
+   "fieldtype": "Int",
+   "label": "To Package No.",
+   "read_only": 1
+  },
+  {
+   "fieldname": "qty",
+   "fieldtype": "Float",
+   "label": "Quantity",
+   "read_only": 1
+  },
+  {
+   "fieldname": "dn_item",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "DN Item",
+   "read_only": 1
+  },
+  {
+   "fieldname": "stock_uom",
+   "fieldtype": "Link",
+   "label": "UOM",
+   "options": "UOM",
+   "read_only": 1
+  },
+  {
+   "fieldname": "batch",
+   "fieldtype": "Link",
+   "label": "Batch",
+   "options": "Batch",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "item_code.custom_length",
+   "fetch_if_empty": 1,
+   "fieldname": "length",
+   "fieldtype": "Float",
+   "label": "Length",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "item_code.custom_width",
+   "fetch_if_empty": 1,
+   "fieldname": "width",
+   "fieldtype": "Float",
+   "label": "Width",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "item_code.custom_height",
+   "fetch_if_empty": 1,
+   "fieldname": "height",
+   "fieldtype": "Float",
+   "label": "Height",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "item_code.custom_pack_style",
+   "fetch_if_empty": 1,
+   "fieldname": "pack_style",
+   "fieldtype": "Data",
+   "label": "Pack Style",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "item_code.custom_length_uom",
+   "fieldname": "length_uom",
+   "fieldtype": "Link",
+   "label": "Length UOM",
+   "options": "UOM",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "item_code.custom_width_uom",
+   "fieldname": "width_uom",
+   "fieldtype": "Link",
+   "label": "Width UOM",
+   "options": "UOM",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "item_code.custom_height_uom",
+   "fieldname": "height_uom",
+   "fieldtype": "Link",
+   "label": "Height UOM",
+   "options": "UOM",
+   "read_only": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2025-05-19 13:08:35.927750",
+ "modified_by": "Administrator",
+ "module": "Phoenix Pharma",
+ "name": "Packing Slip Detail",
+ "naming_rule": "Random",
+ "owner": "Administrator",
+ "permissions": [],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
