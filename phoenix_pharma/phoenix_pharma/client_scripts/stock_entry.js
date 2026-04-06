@@ -180,6 +180,103 @@ function toggle_manual_arn_mode(frm) {
   frm.refresh_field("custom_exploded_items");
 }
 
+// ---------------------------------------------------------------------------
+// API Purity — Items child table triggers
+// ---------------------------------------------------------------------------
+frappe.ui.form.on("Stock Entry Detail", {
+  batch_no: function (frm, cdt, cdn) {
+    const row = locals[cdt][cdn];
+    if (!row.batch_no || !row.item_code) return;
+
+    // Fetch COA purity data for the selected batch
+    frappe.call({
+      method:
+        "phoenix_pharma.phoenix_pharma.utils.api_purity_utils.get_purity_data_for_batch",
+      args: { batch_no: row.batch_no, item_code: row.item_code },
+      callback: function (r) {
+        if (!r.message || !r.message.found) return;
+        const d = r.message;
+
+        if (d.error) {
+          frappe.msgprint({
+            title: __("COA Purity Error"),
+            indicator: "red",
+            message: d.error,
+          });
+          return;
+        }
+
+        frappe.model.set_value(cdt, cdn, "custom_coa_reference", d.coa);
+        frappe.model.set_value(cdt, cdn, "custom_assay_percent", d.assay_percent);
+        frappe.model.set_value(cdt, cdn, "custom_lod_percent", d.lod_percent);
+        frappe.model.set_value(cdt, cdn, "custom_effective_purity", d.effective_purity);
+
+        // Recalculate adjusted qty if qty already set
+        if (row.qty) {
+          _recalculate_adjusted_qty(frm, cdt, cdn, row.qty, d.assay_percent, d.lod_percent);
+        }
+
+        frappe.show_alert(
+          {
+            message: __(
+              "COA found: Assay {0}%, LOD {1}%, Effective Purity {2}%",
+              [d.assay_percent, d.lod_percent, d.effective_purity]
+            ),
+            indicator: "green",
+          },
+          5
+        );
+      },
+    });
+  },
+
+  qty: function (frm, cdt, cdn) {
+    const row = locals[cdt][cdn];
+    if (!row.custom_assay_percent || !row.custom_lod_percent) return;
+    _recalculate_adjusted_qty(
+      frm, cdt, cdn, row.qty,
+      row.custom_assay_percent, row.custom_lod_percent
+    );
+  },
+
+  custom_assay_percent: function (frm, cdt, cdn) {
+    _trigger_purity_recalc(frm, cdt, cdn);
+  },
+
+  custom_lod_percent: function (frm, cdt, cdn) {
+    _trigger_purity_recalc(frm, cdt, cdn);
+  },
+});
+
+function _trigger_purity_recalc(frm, cdt, cdn) {
+  const row = locals[cdt][cdn];
+  if (!row.custom_assay_percent || row.custom_lod_percent === undefined) return;
+  const assay = row.custom_assay_percent;
+  const lod = row.custom_lod_percent;
+  const purity = (assay * (100 - lod)) / 100;
+  frappe.model.set_value(cdt, cdn, "custom_effective_purity", Math.round(purity * 10000) / 10000);
+  if (row.qty) {
+    _recalculate_adjusted_qty(frm, cdt, cdn, row.qty, assay, lod);
+  }
+}
+
+function _recalculate_adjusted_qty(frm, cdt, cdn, qty, assay, lod) {
+  if (!qty || !assay || lod === undefined) return;
+  frappe.call({
+    method:
+      "phoenix_pharma.phoenix_pharma.utils.api_purity_utils.calculate_adjusted_qty_api",
+    args: { required_qty: qty, assay: assay, lod: lod },
+    callback: function (r) {
+      if (!r.message) return;
+      frappe.model.set_value(cdt, cdn, "custom_adjusted_qty", r.message.adjusted_qty);
+      frappe.model.set_value(cdt, cdn, "custom_effective_purity", r.message.effective_purity);
+    },
+  });
+}
+
+// ---------------------------------------------------------------------------
+// Exploded items child table triggers
+// ---------------------------------------------------------------------------
 frappe.ui.form.on("Exploded Stock Entry Items", {
   control_number: function (frm, cdt, cdn) {
     // Clear issued_qty when control_number changes

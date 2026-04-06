@@ -155,6 +155,7 @@ fixtures = [
     {"doctype": "Type Of Formulation"},
     {"doctype": "Pack Style"},
     {"doctype": "Port"},
+    {"doctype": "Batch COA"},
     {
         "doctype": "Notification",
         "filters": [

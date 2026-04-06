@@ -1,0 +1,220 @@
+{
+ "autoname": "naming_series:",
+ "creation": "2026-04-06 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "batch_no",
+  "item_code",
+  "item_name",
+  "col_break_1",
+  "status",
+  "test_date",
+  "tested_by",
+  "section_break_analysis",
+  "assay_percent",
+  "lod_percent",
+  "col_break_2",
+  "effective_purity",
+  "section_break_excipient",
+  "approved_by",
+  "approval_date",
+  "col_break_3",
+  "coa_missing_action",
+  "section_break_remarks",
+  "remarks",
+  "section_break_audit",
+  "adjustment_log"
+ ],
+ "fields": [
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "COA-.YYYY.-.#####",
+   "reqd": 1
+  },
+  {
+   "fieldname": "batch_no",
+   "fieldtype": "Link",
+   "label": "Batch No",
+   "options": "Batch",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "item_code",
+   "fieldtype": "Link",
+   "label": "Item Code",
+   "options": "Item",
+   "fetch_from": "batch_no.item",
+   "read_only": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "item_name",
+   "fieldtype": "Data",
+   "label": "Item Name",
+   "fetch_from": "item_code.item_name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "col_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Draft\nApproved\nRejected",
+   "default": "Draft",
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "test_date",
+   "fieldtype": "Date",
+   "label": "Test Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "tested_by",
+   "fieldtype": "Data",
+   "label": "Tested By",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_analysis",
+   "fieldtype": "Section Break",
+   "label": "Analysis Results"
+  },
+  {
+   "fieldname": "assay_percent",
+   "fieldtype": "Float",
+   "label": "Assay (%)",
+   "reqd": 1,
+   "description": "Percentage purity of the API as per COA"
+  },
+  {
+   "fieldname": "lod_percent",
+   "fieldtype": "Float",
+   "label": "LOD (%)",
+   "reqd": 1,
+   "description": "Loss on Drying percentage as per COA"
+  },
+  {
+   "fieldname": "col_break_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "effective_purity",
+   "fieldtype": "Float",
+   "label": "Effective Purity (%)",
+   "read_only": 1,
+   "description": "Calculated: Assay × (100 − LOD) / 100"
+  },
+  {
+   "fieldname": "section_break_excipient",
+   "fieldtype": "Section Break",
+   "label": "Approval"
+  },
+  {
+   "fieldname": "approved_by",
+   "fieldtype": "Link",
+   "label": "Approved By",
+   "options": "User"
+  },
+  {
+   "fieldname": "approval_date",
+   "fieldtype": "Date",
+   "label": "Approval Date"
+  },
+  {
+   "fieldname": "col_break_3",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "coa_missing_action",
+   "fieldtype": "Select",
+   "label": "If COA Missing on Stock Entry",
+   "options": "Warn\nBlock",
+   "default": "Warn",
+   "description": "Action to take when no approved COA is found for a batch in Stock Entry"
+  },
+  {
+   "fieldname": "section_break_remarks",
+   "fieldtype": "Section Break",
+   "label": "Remarks"
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Text",
+   "label": "Remarks"
+  },
+  {
+   "fieldname": "section_break_audit",
+   "fieldtype": "Section Break",
+   "label": "Adjustment Audit Log"
+  },
+  {
+   "fieldname": "adjustment_log",
+   "fieldtype": "Long Text",
+   "label": "Adjustment Log",
+   "read_only": 1,
+   "description": "Auto-populated when purity adjustment is applied in Stock Entry"
+  }
+ ],
+ "is_submittable": 0,
+ "links": [],
+ "modified": "2026-04-06 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Phoenix Pharma",
+ "name": "Batch COA",
+ "naming_rule": "By Naming Series",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Quality Manager",
+   "share": 1,
+   "submit": 0,
+   "write": 1
+  },
+  {
+   "create": 0,
+   "delete": 0,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Stock User",
+   "share": 1,
+   "write": 0
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

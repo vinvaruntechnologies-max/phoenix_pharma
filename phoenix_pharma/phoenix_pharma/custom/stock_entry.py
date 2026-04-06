@@ -12,6 +12,7 @@ from phoenix_pharma.phoenix_pharma.utils.utils import (
     get_env_prefix,
     send_notification,
 )
+from phoenix_pharma.phoenix_pharma.utils.api_purity_utils import apply_purity_adjustment
 
 
 def before_insert(doc, method=None):
@@ -176,6 +177,11 @@ def before_validate(doc, method=None):
         load_exploded_se_items(doc)
     else:
         load_issued_items_from_work_order(doc)
+
+    # Apply API purity adjustment AFTER ARN items are loaded
+    # Only for forward (non-return) manufacture entries
+    if not doc.is_return:
+        apply_purity_adjustment(doc)
 
 
 def on_submit(doc, method):
