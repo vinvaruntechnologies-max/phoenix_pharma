@@ -64,20 +64,17 @@ frappe.ui.form.on("Purchase Order", {
     }
   },
   //**client script: PO tax template selection based on cost center
-  cost_center: function (frm) {
+  cost_center: async function (frm) {
     frm.set_value("tax_category", "");
     frm.set_value("shipping_address", "");
     frm.set_value("billing_address", "");
     frm.set_value("place_of_supply", "");
     clear_taxes(frm);
     if (frm.doc.cost_center) {
-      // Define Cost Center to Address mapping
-      let cost_center_map = {
-        "Assam - PBPL": "PBPL - Assam-Billing",
-        "Puducherry - PBPL": "PBPL - Pondy-Billing",
-        "Assam - PL": "PHOENIX LABORATORIES - Assam-Billing",
-        // Add more mappings as needed
-      };
+      const map_result = await frappe.call({
+        method: "phoenix_pharma.phoenix_pharma.utils.utils.get_cost_center_billing_map",
+      });
+      const cost_center_map = map_result.message || {};
 
       let billing_address_name = cost_center_map[frm.doc.cost_center];
 

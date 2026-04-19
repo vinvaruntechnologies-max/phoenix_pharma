@@ -84,3 +84,9 @@ def get_warehouse_address(warehouse):
     except Exception as e:
         frappe.log_error(f"Error getting warehouse address: {str(e)}")
         return "Error fetching address"
+
+
+@frappe.whitelist()
+def get_cost_center_billing_map():
+    records = frappe.get_all("Cost Center Billing Map", fields=["cost_center", "billing_address"])
+    return {r.cost_center: r.billing_address for r in records}

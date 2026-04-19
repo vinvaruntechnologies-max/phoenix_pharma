@@ -1,9 +1,3 @@
-// Global map for cost center to billing address
-const cost_center_map = {
-  "Assam - PBPL": "PBPL - Assam-Billing",
-  "Puducherry - PBPL": "PBPL - Pondy-Billing",
-  "Assam - PL": "PHOENIX LABORATORIES - Assam-Billing",
-};
 
 frappe.ui.form.on("Sales Order", {
   refresh: function (frm) {
@@ -106,6 +100,11 @@ async function load_taxes(frm) {
   frm.set_value("tax_category", "");
   frm.set_value("dispatch_address_name", "");
   frm.set_value("company_address", "");
+
+  const map_result = await frappe.call({
+    method: "phoenix_pharma.phoenix_pharma.utils.utils.get_cost_center_billing_map",
+  });
+  const cost_center_map = map_result.message || {};
 
   const billing_address_name = cost_center_map[cost_center];
   if (!billing_address_name) return;
